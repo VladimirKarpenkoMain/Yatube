@@ -8,6 +8,11 @@ class Group(models.Model):
     title = models.CharField(max_length=128)
     slug = models.SlugField()
     description = models.CharField(max_length=500)
+    # creator = models.ForeignKey(
+    #     User,
+    #     on_delete=models.CASCADE,
+    #     related_name='posts'
+    # )
 
     def __str__(self):
         return self.title

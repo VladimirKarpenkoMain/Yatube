@@ -10,7 +10,7 @@
           {{ group.description }}
         </p>
         <article>
-            {% for post in posts %}
+            {% for post in page_obj %}
           <ul>
             <li>
               Автор: {{ post.author.get_full_name }}
@@ -20,10 +20,10 @@
             </li>
           </ul>
           <p>{{ post.text }}</p>
-          <a href="group_list.html">все записи группы</a>
         </article>
                 {% if not forloop.last %}<hr>{% endif %}
         {% endfor %}
+        {% include 'includes/paginator.html' %}
         <!-- под последним постом нет линии -->
       </div>  
     </main>

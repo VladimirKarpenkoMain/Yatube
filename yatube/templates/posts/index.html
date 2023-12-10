@@ -7,7 +7,7 @@
       <div class="container py-5">     
         <h1>Последние обновления на сайте</h1>
         <article>
-            {% for post in posts %}
+            {% for post in page_obj %}
           <ul>
             <li>
               Автор: {{ post.author.get_full_name }}
@@ -17,10 +17,13 @@
             </li>
           </ul>      
           <p>{{ post.text }}</p>
-          <a href="{% url 'posts:groups' post.group.slug %}">все записи группы</a>
+                {% if post.group %}
+                    <a style="color: black" href="{% url 'posts:groups' post.group.slug %}"><button type="submit" class="btn btn-secondary">все записи группы</button></a>
+                {% endif %}
         </article>
                 {% if not forloop.last %}<hr>{% endif %}
         {% endfor %}
+        {% include 'includes/paginator.html' %}
         <!-- под последним постом нет линии -->
       </div>  
     </main>
