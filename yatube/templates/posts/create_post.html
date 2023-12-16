@@ -10,7 +10,7 @@
                 {% if is_edit %}Редактировать пост{% else %}Новый пост{% endif %}
               </div>
               <div class="card-body">        
-                <form method="POST">
+                <form method="POST" enctype='multipart/form-data'>
                     <input type="hidden" name="csrfmiddlewaretoken" value="">
                   {% csrf_token %}
                   <div class="form-group row my-3 p-3">
@@ -33,6 +33,21 @@
                       Группа, к которой будет относиться пост
                     </small>
                   </div>
+                    {% if not is_edit %}
+                        <div class="form-group row my-3 p-3">
+                            <label for="{{ form.image.if_for_label }}">
+                              Картинка
+                            </label>
+                            {{ form.image }}
+                        </div>
+                    {% else %}
+                        <div class="form-group row my-3 p-3">
+                            <label for="{{ form.image.if_for_label }}">
+                              Картинка
+                            </label>
+                            {{ form.image }}
+                        </div>
+                    {% endif %}
                   <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">
                       {% if is_edit %}Сохранить{% else %}Добавить{% endif %}
